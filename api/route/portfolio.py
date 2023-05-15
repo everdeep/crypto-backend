@@ -1,9 +1,8 @@
 from http import HTTPStatus
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
 from flasgger import swag_from
 from flask_login import login_required, current_user
 
-from api.schema import PortfolioSchema
 from api.service import PortfolioService
 
 portfolio_api = Blueprint("api", __name__)

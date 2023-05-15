@@ -4,8 +4,8 @@ from flask import Blueprint, request, jsonify
 from flasgger import swag_from
 from flask_login import login_user, logout_user, login_required, current_user
 from api.service import UserService
-from api.schema import UserSchema, UserSettingsSchema, UserActivitySchema
-from utils import generate_password
+from cryptolib.schema import UserSchema, UserSettingsSchema, UserActivitySchema
+from cryptolib.utils import generate_password
 
 user_api = Blueprint("api", __name__)
 
@@ -108,7 +108,9 @@ def is_logged_in():
     Checks if the user is logged in
     ---
     """
+
     if current_user.is_authenticated:
+        print(current_user)
         return {"loggedIn": True, "user": UserSchema().dump(current_user)}, 200
 
     return {"loggedIn": False}, 200

@@ -1,5 +1,5 @@
-from api.model import *
-from api.schema import *
+from cryptolib.model import *
+from cryptolib.schema import *
 
 import pytest
 
@@ -7,7 +7,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from config import Config
 
-ENGINE = create_engine(Config().SQLALCHEMY_DATABASE_URI, echo=False, pool_size=20, max_overflow=0)
+ENGINE = create_engine(
+    Config().SQLALCHEMY_DATABASE_URI, echo=False, pool_size=20, max_overflow=0
+)
 
 # ========================
 # Fixtures
@@ -134,6 +136,7 @@ def test_order_schema(session):
     assert "updated_at" in data
     assert len(data.keys()) == 17
 
+
 def test_portfolio_schema(session):
     """Test the portfolio schema"""
     data = session.query(PortfolioModel).first()
@@ -182,7 +185,7 @@ def test_user_schema(session):
     assert "address_id" not in data
     assert "portfolio_id" not in data
     assert "is_admin" not in data
-    assert "is_active" not  in data
+    assert "is_active" not in data
     assert "is_verified" in data
     assert "created_at" not in data
     assert "updated_at" not in data

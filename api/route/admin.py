@@ -1,16 +1,15 @@
 from http import HTTPStatus
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from flask_login import login_required, current_user
-from flasgger import swag_from
 
 from api.service import UserService, DataService
-from api.schema import (
+from cryptolib.schema import (
     UserSchema,
     CurrencyPairConfigSchema,
     PortfolioSchema,
     OrderSchema,
 )
-from utils import get_unfiltered_response
+from cryptolib.utils import get_unfiltered_response
 
 admin_api = Blueprint("api", __name__)
 

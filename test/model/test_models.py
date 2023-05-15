@@ -1,12 +1,14 @@
-from api.model import *
-from api.enums import *
+from cryptolib.model import *
+from cryptolib.enums import *
 import pytest
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from config import Config
 
-ENGINE = create_engine(Config().SQLALCHEMY_DATABASE_URI, echo=False, pool_size=20, max_overflow=0)
+ENGINE = create_engine(
+    Config().SQLALCHEMY_DATABASE_URI, echo=False, pool_size=20, max_overflow=0
+)
 
 # ========================
 # Fixtures
