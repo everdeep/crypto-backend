@@ -33,7 +33,7 @@ $ cp .env.default .env
 
 5. Download the cryptolib package and store it in the root directory of the project. Bug fixes can be made directly to this package and then pushed to the repository. This folder itself should never be committed to this projects repo however, only the cryptolibrary repo.
 ```bash
-$ git clone https://github.com/everdeep/crypto-library.git
+$ git clone https://github.com/everdeep/crypto-library.git cryptolib
 ```
 
 6. Run the server
