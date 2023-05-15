@@ -1,7 +1,11 @@
 import requests
-from api.model import SymbolModel, CurrencyPairConfigModel, OrderModel, BalanceModel, PortfolioModel
-
-from app import db
+from api.model import (
+    SymbolModel,
+    CurrencyPairConfigModel,
+    OrderModel,
+    BalanceModel,
+    PortfolioModel,
+)
 
 
 class DataService:
@@ -15,22 +19,31 @@ class DataService:
 
     def get_currency_pair_config(self, user_id, currency_pair):
         """Returns a currency pair config for a user"""
-        return CurrencyPairConfigModel.query.filter_by(currency_pair=currency_pair, user_id=user_id).first()
+        return CurrencyPairConfigModel.query.filter_by(
+            currency_pair=currency_pair, user_id=user_id
+        ).first()
 
     def get_currency_pair_configs(self, user_id, args):
         """Returns all currency pair configs for a user"""
         is_active = args.get("is_active", None, type=bool)
         if is_active is not None:
-            return CurrencyPairConfigModel.query.filter_by(user_id=user_id, is_active=is_active).order_by(
-                CurrencyPairConfigModel.currency_pair
-            ).all()
+            return (
+                CurrencyPairConfigModel.query.filter_by(
+                    user_id=user_id, is_active=is_active
+                )
+                .order_by(CurrencyPairConfigModel.currency_pair)
+                .all()
+            )
 
         return CurrencyPairConfigModel.query.filter_by(user_id=user_id).all()
 
-
     def get_orders(self, user_id):
         """Returns all orders for a user"""
-        return OrderModel.query.filter_by(user_id=user_id).order_by(OrderModel.created_at.desc()).all()
+        return (
+            OrderModel.query.filter_by(user_id=user_id)
+            .order_by(OrderModel.created_at.desc())
+            .all()
+        )
 
     def get_portfolio(self, user_id):
         """Returns a portfolio for a user"""
@@ -42,7 +55,9 @@ class DataService:
 
     def get_balance(self, portfolio_id, asset):
         """Returns a balance for a user"""
-        return BalanceModel.query.filter_by(portfolio_id=portfolio_id, asset=asset).first()
+        return BalanceModel.query.filter_by(
+            portfolio_id=portfolio_id, asset=asset
+        ).first()
 
     # ===================================
     # Updates

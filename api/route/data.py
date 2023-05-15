@@ -3,15 +3,13 @@ from flask import Blueprint, jsonify, request
 from flasgger import swag_from
 from flask_login import login_required, current_user
 
-from api.schema import (
+from cryptolib.schema import (
     SymbolSchema,
     CurrencyPairConfigSchema,
     OrderSchema,
     PortfolioSchema,
 )
 from api.service import DataService
-
-from app import db
 
 data_api = Blueprint("api", __name__)
 
